@@ -19,17 +19,17 @@ const int port = 80;
 /* vibration code */
 void vibrate()
 {
-  analogWrite(LED,1023);
+  analogWrite(0,1023);
   delay(250);
-  analogWrite(LED,0);
+  analogWrite(0,0);
   delay(250);
-  analogWrite(LED,1023);
+  analogWrite(0,1023);
   delay(250);
-  analogWrite(LED,0);
+  analogWrite(0,0);
   delay(250);
-  analogWrite(LED,1023);
+  analogWrite(0,1023);
   delay(500);
-  analogWrite(LED,0);
+  analogWrite(0,0);
 }
 
 void setup()
