@@ -16,6 +16,22 @@ IPAddress subnet(255, 255, 255, 0);
 IPAddress host(192, 168, 4, 1); // should be an array of hosts in case of multiple armbands
 const int port = 80;
 
+/* vibration code */
+void vibrate()
+{
+  analogWrite(LED,1023);
+  delay(250);
+  analogWrite(LED,0);
+  delay(250);
+  analogWrite(LED,1023);
+  delay(250);
+  analogWrite(LED,0);
+  delay(250);
+  analogWrite(LED,1023);
+  delay(500);
+  analogWrite(LED,0);
+}
+
 void setup()
 {
   Serial.begin(115200);
