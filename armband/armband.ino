@@ -16,6 +16,22 @@ const char *pass = "passsword";
 const char *host = "192.168.11.4";
 const int port = 80;
 
+/* vibration code */
+void vibrate()
+{
+  analogWrite(0,1023);
+  delay(250);
+  analogWrite(0,0);
+  delay(250);
+  analogWrite(0,1023);
+  delay(250);
+  analogWrite(0,0);
+  delay(250);
+  analogWrite(0,1023);
+  delay(500);
+  analogWrite(0,0);
+}
+
 void setup()
 {
   Serial.begin(115200);
