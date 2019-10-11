@@ -20,6 +20,7 @@ const int port = 80;
 /* vibration code */
 void vibrate()
 {
+  pinMode(0, OUTPUT);
   analogWrite(0,1023);
   delay(250);
   analogWrite(0,0);
