@@ -20,18 +20,18 @@ const int port = 80;
 /* vibration code */
 void vibrate()
 {
-  pinMode(0, OUTPUT);
-  analogWrite(0,1023);
+  pinMode(3, OUTPUT);
+  analogWrite(3,1023);
   delay(250);
-  analogWrite(0,0);
+  analogWrite(3,0);
   delay(250);
-  analogWrite(0,1023);
+  analogWrite(3,1023);
   delay(250);
-  analogWrite(0,0);
+  analogWrite(3,0);
   delay(250);
-  analogWrite(0,1023);
+  analogWrite(3,1023);
   delay(500);
-  analogWrite(0,0);
+  analogWrite(3,0);
 }
 
 void setup()
@@ -78,5 +78,5 @@ void loop() {
     Serial.println("vibrating");
     vibrate();
   }
-  delay(100);
+  delay(150);
 }
