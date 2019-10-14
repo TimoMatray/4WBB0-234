@@ -14,7 +14,7 @@ ESP8266WebServer server;
 Adafruit_BMP085 bmp;
 const int threshold = 1000;
 
-String whistle = "0";
+String value = "0";
 
 void setup() {
   WiFi.mode(WIFI_AP);
@@ -22,10 +22,12 @@ void setup() {
   WiFi.softAP(ssid_ap,password_ap);
 
   Serial.begin(115200);
-  Serial.println(); Serial.print("IP adress: "); Serial.println(ip);
+  Serial.println();
+  Serial.print("IP adress: ");
+  Serial.println(ip);
 
   server.on("/",handleIndex);
-  server.on("/test",handleIndex);
+  server.on("/update",handleIndex);
   server.onNotFound(handleIndex);
   server.begin();
 
@@ -37,13 +39,18 @@ void setup() {
 }
 
 void loop(){
-  whistle = readSensor();
+  value = readSensor();
   server.handleClient();
 }
 
 void handleIndex(){
-  server.send(200,"text/plain",whistle);
-  whistle = "0";
+  server.send(200, "text/plain", value);
+  value = "0"; // reset flag
+}
+
+void updateValue() {
+  value = server.arg("value").toInt();
+  server.send(200, "text/plain", value);
 }
 
 String readSensor() {
