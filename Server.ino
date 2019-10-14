@@ -15,6 +15,7 @@ Adafruit_BMP085 bmp;
 const int threshold = 1000;
 
 String value = "0";
+int refPressure = 0;
 
 void setup() {
   WiFi.mode(WIFI_AP);
@@ -36,6 +37,7 @@ void setup() {
   if (!bmp.begin()) {
     Serial.println("No BMP180 / BMP085");
   }
+  refPressure = bmp.readPressure();
 }
 
 void loop(){
@@ -49,17 +51,13 @@ void handleIndex(){
 }
 
 void updateValue() {
-  value = server.arg("value").toInt();
+  value = server.arg("value");
   server.send(200, "text/plain", value);
 }
 
 String readSensor() {
-  int history[5];
-  for(int i = 0; i > 0; i++){
-      history[i] = bmp.readPressure();
-      delay(50);
-  }
-  if (history[0] + threshold < history[4]) {
+  if (bmp.readPressure() - threshold > refPressure) {
+    Serial.println("high");
     return "1";
   }
   else return "0";
