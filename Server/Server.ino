@@ -48,8 +48,8 @@ void setup() {
   server.onNotFound(handleIndex);
   server.begin();
 
-  Wire.pins(0, 2); // configure input BMP
-  Wire.begin(0, 2);
+  Wire.pins(1, 2); // configure input BMP
+  Wire.begin(1, 2);
   
   if (!bmp.begin()) {
     Serial.println("No BMP180 / BMP085");
